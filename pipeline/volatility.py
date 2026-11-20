@@ -14,6 +14,7 @@ DATA_DIR = Path(__file__).resolve().parent.parent / "data"   # repo-root data/
 
 PRICES_FILE = DATA_DIR / "prices.parquet"
 OUTPUT_FILE = DATA_DIR / "volatility.parquet"
+CSV_FILE = DATA_DIR / "volatility.csv"
 
 # Settings
 WINDOW = 30
@@ -48,21 +49,21 @@ def main():
     if pd.isna(lower) or pd.isna(upper) or upper <= lower:
         raise ValueError("Not enough valid volatility data to normalize.")
 
-    normalized = (
-        (annualized_volatility - lower) / (upper - lower)
-    ).clip(0, 1)
+    # normalized = (
+    #     (annualized_volatility - lower) / (upper - lower)
+    # ).clip(0, 1)
 
     # Save results
     annualized_volatility.to_parquet(OUTPUT_FILE)
     annualized_volatility.to_csv(CSV_FILE)   # the visualisation scripts read the CSV
-    normalized.to_parquet(NORMALIZED_FILE)
+    # normalized.to_parquet(NORMALIZED_FILE)
 
     print("\nVolatility calculation complete!")
-    for f in (OUTPUT_FILE, CSV_FILE, NORMALIZED_FILE):
-        print(f"Saved: {f}")
+    # for f in (OUTPUT_FILE, CSV_FILE, NORMALIZED_FILE):
+    #     print(f"Saved: {f}")
 
     print("\nSample normalized volatility:")
-    print(normalized.tail())
+    # print(normalized.tail())
 
 
 if __name__ == "__main__":
