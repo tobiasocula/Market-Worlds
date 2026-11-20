@@ -22,7 +22,7 @@ res = 200           # resolution per cell
 hmax = 5.0          # height of the most volatile stock in the whole universe
 n_cols, n_rows = 3, 2
 
-NORMALIZE_VOL = False
+NORMALIZE_VOL = False # keep at false
 
 corners = [(0, 0), (10, 0), (20, 0), (0, 10), (10, 10), (20, 10)]
 
@@ -93,7 +93,6 @@ for j, t in enumerate(time_values):
             floor=0.0,
             seed=i,
         )
-        print(i, j)
 
         # guarantee water at the cell border
         d_edge = np.minimum.reduce([X - cx, cx + cell_size - X, Y - cy, cy + cell_size - Y])
@@ -108,9 +107,9 @@ np.save("struct_Z.npy", GZ)
 np.save("struct_X.npy", GX)
 np.save("struct_Y.npy", GY)
 
-show_terrain_time(
-    GX,
-    GY,
-    GZ,
-    time_values
-)
+# show_terrain_time(
+#     GX,
+#     GY,
+#     GZ,
+#     time_values
+# )

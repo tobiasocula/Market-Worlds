@@ -203,7 +203,6 @@ for j in range(len(time_values)):
             frame.extend((x, y, zz, side_size) for x, y, zz in zip(sx[ok], sy[ok], z[ok]))
     trees.append(np.array(frame).reshape(-1, 4))
 
-print("test")
 # clouds
 # ---------------- clouds ----------------
 cloud_sigma = 1.5      # spread in terrain units: larger = wider, softer clouds
